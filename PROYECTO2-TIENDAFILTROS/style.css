@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100vw;
+  gap: 40px;
+  padding: 40px;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 200px;
+  justify-content: space-between;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.product-container > img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  background-color: #f3f3f3;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.product-container > p {
+  margin: 0;
+}
+
+.name-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  background-color: #555555;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+}
+
+.header > img {
+  width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+
+.header > .options-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.header > .logos-container {
+  display: flex;
+  height: 20px;
+  gap: 15px;
+  padding-right: 20px;
+}
+
+.header > .logos-container > img {
+  cursor: pointer;
+}
+
+.banner-image > img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.filter-container {
+  display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 0;
+    background-color: #f1f1f1;
+}
