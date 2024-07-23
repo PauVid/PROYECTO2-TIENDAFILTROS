@@ -91,3 +91,22 @@ button, a {
     padding: 40px 0;
     background-color: #f1f1f1;
 }
+
+
+.filter-container button {
+  margin: 5px;
+  padding: 10px;
+}
+
+.filter-btn.selected {
+  background-color: rgb(223 223 53);
+  border: none;
+}
+
+.product-container {
+  display: none;
+}
+
+.product-container.visible {
+  display: block;
+}
