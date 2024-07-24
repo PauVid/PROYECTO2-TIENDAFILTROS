@@ -117,46 +117,43 @@ const products = [
 
 function filters() {
   function updateProductVisibility() {
+    
+    const nikeButton = document.querySelector("button[data-brand='nike-original']");
+    const nbButton = document.querySelector("button[data-brand='new-balance']");
+    const adidasButton = document.querySelector("button[data-brand='adidas-original']");
+  
+    const nikeSelected = nikeButton.classList.contains("selected");
+    const nbSelected = nbButton.classList.contains("selected");
+    const adidasSelected = adidasButton.classList.contains("selected");
+  
+    const anySelected = nikeSelected || nbSelected || adidasSelected;
+  
+    if (!anySelected) {
 
-    const nikeVisible = document.querySelector("button[data-brand='nike-original']");
-    const nbVisible = document.querySelector("button[data-brand='new-balance']");
-    const adidasVisible = document.querySelector("button[data-brand='adidas-original']");
-    
-    if (nikeVisible.classList.contains("selected")) {
-      document.querySelectorAll(".nike").forEach(product => product.classList.add("visible"));
-      document.querySelectorAll(".adidas").forEach(product => product.classList.remove("visible"));
-      document.querySelectorAll(".newbalance").forEach(product => product.classList.remove("visible"));
+      document.querySelectorAll(".product-container").forEach(product => product.classList.add("visible"));
     } else {
-      // document.querySelectorAll(".adidas").forEach(product => product.classList.remove("visible"));
-      document.querySelectorAll(".newbalance").forEach(product => product.classList.add("visible"));
-      document.querySelectorAll(".nike").forEach(product => product.classList.add("visible"));
-    }
-    
-    if (nbVisible.classList.contains("selected")) {
-      document.querySelectorAll(".newbalance").forEach(product => product.classList.add("visible"));
-      document.querySelectorAll(".adidas").forEach(product => product.classList.remove("visible"));
-      document.querySelectorAll(".nike").forEach(product => product.classList.remove("visible"));
-    } else {
-      // document.querySelectorAll(".newbalance").forEach(product => product.classList.remove("visible"));
-      document.querySelectorAll(".adidas").forEach(product => product.classList.add("visible"));
-      document.querySelectorAll(".nike").forEach(product => product.classList.add("visible"));
-    }
-    
-    if (adidasVisible.classList.contains("selected")) {
-      document.querySelectorAll(".adidas").forEach(product => product.classList.add("visible"));
-      document.querySelectorAll(".nike").forEach(product => product.classList.remove("visible"));
-      document.querySelectorAll(".newbalance").forEach(product => product.classList.remove("visible"));
-    } else {
-      // document.querySelectorAll(".adidas").forEach(product => product.classList.remove("visible"));
-      document.querySelectorAll(".newbalance").forEach(product => product.classList.add("visible"));
-      document.querySelectorAll(".nike").forEach(product => product.classList.add("visible"));
-    }
 
+      document.querySelectorAll(".product-container").forEach(product => product.classList.remove("visible"));
+  
+      if (nikeSelected) {
+        document.querySelectorAll(".nike").forEach(product => product.classList.add("visible"));
+      }
+  
+      if (nbSelected) {
+        document.querySelectorAll(".newbalance").forEach(product => product.classList.add("visible"));
+      }
+  
+      if (adidasSelected) {
+        document.querySelectorAll(".adidas").forEach(product => product.classList.add("visible"));
+      }
+    }
   }
+  
+  
 
   const body = document.querySelector("#app");
 
-  const filterContainer = document.createElement("div");
+  const filterContainer = document.createElement("section");
   filterContainer.classList.add("filter-container");
 
   const uniqueBrands = [...new Set(products.map(product => product.brand))];
@@ -180,7 +177,7 @@ function filters() {
 function productsGrid() {
   const body = document.querySelector("#app");
 
-  const productList = document.createElement("div");
+  const productList = document.createElement("section");
   productList.classList.add("product-grid");
 
   products.forEach(product => {
@@ -214,7 +211,6 @@ function productsGrid() {
 
   body.append(productList);
 }
-
 
 function header() {
   const body = document.querySelector("#app");
@@ -285,7 +281,7 @@ function header() {
 function banner () {
   const body = document.querySelector("#app");
 
-  const bannerContainer = document.createElement("div");
+  const bannerContainer = document.createElement("section");
   bannerContainer.classList.add("banner-image");
   const banner = document.createElement("img");
 
@@ -296,7 +292,151 @@ function banner () {
   body.append(bannerContainer);
 }
 
+function footer() {
+  const body = document.querySelector("#app");
+
+  const footerContainer = document.createElement("footer");
+  footerContainer.classList.add("footer-container");
+
+  const compras = [
+    {
+      name: "Compra con JD",
+      url: "#",
+    },
+    {
+      name: "Guía de tallas",
+      url: "#",
+    },
+    {
+      name: "Buscador de tallas",
+      url: "#",
+    },
+    {
+      name: "Descuento estudiantes",
+      url: "#",
+    },
+    {
+      name: "Calendario lanzamientos",
+      url: "#",
+    },
+    {
+      name: "Inscríbete a JDX",
+      url: "#",
+    },
+    {
+      name: "JD Blog",
+      url: "#",
+    },
+  ]
+
+  const atencions = [
+    {
+      name: "Atención al cliente",
+      url: "#",
+    },
+    {
+      name: "Preguntas frecuentes",
+      url: "#",
+    },
+    {
+      name: "Envíos y devoluciones",
+      url: "#",
+    },
+    {
+      name: "Seguimiento de envío",
+      url: "#",
+    },
+    {
+      name: "Contacto",
+      url: "#",
+    },
+  ]
+
+  const avisos = [
+    {
+      name: "Aviso legal",
+      url: "#",
+    },
+    {
+      name: "Términos y condiciones",
+      url: "#",
+    },
+    {
+      name: "Promociones y condiciones",
+      url: "#",
+    },
+    {
+      name: "Política de privacidad",
+      url: "#",
+    },
+    {
+      name: "Política de Cookies",
+      url: "#",
+    },
+    {
+      name: "Ajustes de Cookies",
+      url: "#",
+    },
+    {
+      name: "Accesibilidad",
+      url: "#",
+    },
+  ]
+  
+  const comprasContainer = document.createElement("div");
+  comprasContainer.classList.add("footer-links");
+
+  for (const compra of compras) {
+
+    const enlace = document.createElement("a");
+    enlace.innerText = compra.name;
+    enlace.src = compra.url;
+
+    comprasContainer.append(enlace);
+
+    footerContainer.append(comprasContainer);
+
+  }
+  
+  const atencionsContainer = document.createElement("div");
+  atencionsContainer.classList.add("footer-links");
+
+  for (const atencion of atencions) {
+
+    const enlace = document.createElement("a");
+    enlace.innerText = atencion.name;
+    enlace.src = atencion.url;
+
+    atencionsContainer.append(enlace);
+
+    footerContainer.append(atencionsContainer);
+
+  }
+
+  const avisosContainer = document.createElement("div");
+  avisosContainer.classList.add("footer-links");
+
+  for (const aviso of avisos) {
+
+    const enlace = document.createElement("a");
+    enlace.innerText = aviso.name;
+    enlace.src = aviso.url;
+
+    avisosContainer.append(enlace);
+
+    footerContainer.append(avisosContainer);
+
+  }
+  
+  
+  
+  body.append(footerContainer);
+
+
+}
+
 header()
 banner()
 filters()
 productsGrid()
+footer()
