@@ -150,7 +150,6 @@ function filters() {
   }
   
   
-
   const body = document.querySelector("#app");
 
   const filterContainer = document.createElement("section");
@@ -171,6 +170,43 @@ function filters() {
     });
   });
 
+  const priceFilter = document.createElement("button");
+  priceFilter.classList.add("price-filter");
+  priceFilter.innerText = "Precio";
+
+  priceFilter.addEventListener("click", () => {
+
+    console.log("Clickado precio")
+    function filterByPrice() {
+      for (const product of products) {
+        console.log(product.price)
+      }
+    }
+
+    const priceContent = document.createElement("div");
+    priceContent.classList.add("price-filter-wrapper")
+    priceContent.innerHTML = `
+    <div>
+      <button id="btn-menos-50" onclick"filterByPrice()"> < 100€ </button> 
+      <button id="btn-mas-50" onclick"filterByPrice()"> > 100€</button> 
+    </div>
+    `
+
+    priceFilter.append(priceContent)
+  })
+
+
+
+  const cleanFilters = document.createElement("button");
+  cleanFilters.classList.add("clean");
+  cleanFilters.innerText = "Limpiar filtros";
+
+  cleanFilters.addEventListener("click", () => {
+    console.log("Clickado")
+    // document.querySelectorAll(".filter-btn").forEach(className => className.classList.add("visible"))
+  })
+
+  filterContainer.append(priceFilter, cleanFilters)
   body.append(filterContainer);
 }
 
