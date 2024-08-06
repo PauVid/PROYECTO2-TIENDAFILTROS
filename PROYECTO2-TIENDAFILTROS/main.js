@@ -172,38 +172,53 @@ function filters() {
 
   const priceFilter = document.createElement("button");
   priceFilter.classList.add("price-filter");
-  priceFilter.innerText = "Precio";
+  priceFilter.innerText = "Precio menor de 100€";
 
   priceFilter.addEventListener("click", () => {
-
-    console.log("Clickado precio")
-    function filterByPrice() {
-      for (const product of products) {
-        console.log(product.price)
+    document.querySelectorAll(".product-container").forEach(productContainer => {
+      const nameElement = productContainer.querySelector(".name-price h2");
+      const priceElement = productContainer.querySelector(".name-price p");
+      
+      if (nameElement && priceElement) {
+        const price = parseFloat(priceElement.innerText);
+        
+        if (price < 100) {
+          productContainer.classList.add("visible");
+        } else {
+          productContainer.classList.remove("visible");
+        }
       }
-    }
+    });
+  });
 
-    const priceContent = document.createElement("div");
-    priceContent.classList.add("price-filter-wrapper")
-    priceContent.innerHTML = `
-    <div>
-      <button id="btn-menos-50" onclick"filterByPrice()"> < 100€ </button> 
-      <button id="btn-mas-50" onclick"filterByPrice()"> > 100€</button> 
-    </div>
-    `
+  // const priceContent = document.createElement("div");
+  // priceContent.classList.add("price-filter-wrapper")
+  // priceContent.innerHTML = `
+  // // <div>
+  // //   <button id="btn-menos-100" onclick"filterByPrice()"> < 100€ </button> 
+  // //   <button id="btn-mas-100" onclick"filterByPrice()"> > 100€</button> 
+  // // </div>
+  // `
 
-    priceFilter.append(priceContent)
-  })
+  // priceFilter.addEventListener("click", () => {
+  //   priceFilter.append(priceContent)
+  // });
 
+  // const masBtn = document.querySelector("#btn-mas-100");
+  // const menosBtn = document.querySelector("#btn-menos-100");
 
+  // masBtn.addEventListener("click", () => {
+  //   if (products.price > 100) {
+  //     document.querySelectorAll(".product-container").forEach(product => product.classList.toggle("visible"));
+  //   } 
+  // })
 
   const cleanFilters = document.createElement("button");
   cleanFilters.classList.add("clean");
   cleanFilters.innerText = "Limpiar filtros";
 
   cleanFilters.addEventListener("click", () => {
-    console.log("Clickado")
-    // document.querySelectorAll(".filter-btn").forEach(className => className.classList.add("visible"))
+    location.reload();
   })
 
   filterContainer.append(priceFilter, cleanFilters)
