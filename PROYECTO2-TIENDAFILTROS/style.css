@@ -93,10 +93,13 @@ button, a {
 
 .filter-container {
   display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px 0;
-    background-color: #f1f1f1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 0;
+  background-color: #f1f1f1;
+
 }
 
 
@@ -141,4 +144,8 @@ button, a {
 
 .footer-links > :first-child {
   font-weight: 600;
+}
+
+.price-container .price-input{
+  height: 37px;
 }

@@ -170,19 +170,31 @@ function filters() {
     });
   });
 
-  const priceFilter = document.createElement("button");
-  priceFilter.classList.add("price-filter");
-  priceFilter.innerText = "Precio menor de 100€";
 
-  priceFilter.addEventListener("click", () => {
+  const priceDiv = document.createElement("div");
+  priceDiv.classList = "price-container";
+
+  const priceInput = document.createElement("input");
+  priceInput.type = "number";
+  priceInput.placeholder = "Filtrar por precio";
+  priceInput.classList.add("price-input");
+
+  const applyPriceFilter = document.createElement("button");
+  applyPriceFilter.classList.add("price-filter");
+  applyPriceFilter.innerText = "Aplicar";
+
+  priceDiv.append(priceInput, applyPriceFilter)
+
+  applyPriceFilter.addEventListener("click", () => {
+    const maxPrice = parseFloat(priceInput.value);
+  
     document.querySelectorAll(".product-container").forEach(productContainer => {
-      const nameElement = productContainer.querySelector(".name-price h2");
       const priceElement = productContainer.querySelector(".name-price p");
       
-      if (nameElement && priceElement) {
+      if (priceElement) {
         const price = parseFloat(priceElement.innerText);
-        
-        if (price < 100) {
+  
+        if (price <= maxPrice) {
           productContainer.classList.add("visible");
         } else {
           productContainer.classList.remove("visible");
@@ -191,37 +203,16 @@ function filters() {
     });
   });
 
-  // const priceContent = document.createElement("div");
-  // priceContent.classList.add("price-filter-wrapper")
-  // priceContent.innerHTML = `
-  // // <div>
-  // //   <button id="btn-menos-100" onclick"filterByPrice()"> < 100€ </button> 
-  // //   <button id="btn-mas-100" onclick"filterByPrice()"> > 100€</button> 
-  // // </div>
-  // `
-
-  // priceFilter.addEventListener("click", () => {
-  //   priceFilter.append(priceContent)
-  // });
-
-  // const masBtn = document.querySelector("#btn-mas-100");
-  // const menosBtn = document.querySelector("#btn-menos-100");
-
-  // masBtn.addEventListener("click", () => {
-  //   if (products.price > 100) {
-  //     document.querySelectorAll(".product-container").forEach(product => product.classList.toggle("visible"));
-  //   } 
-  // })
-
   const cleanFilters = document.createElement("button");
   cleanFilters.classList.add("clean");
   cleanFilters.innerText = "Limpiar filtros";
 
   cleanFilters.addEventListener("click", () => {
+    window.scrollTo(0, 0);
     location.reload();
   })
 
-  filterContainer.append(priceFilter, cleanFilters)
+  filterContainer.append(priceDiv, cleanFilters);
   body.append(filterContainer);
 }
 
