@@ -187,29 +187,48 @@ function filters() {
 
   applyPriceFilter.addEventListener("click", () => {
     const maxPrice = parseFloat(priceInput.value);
+    let productFound = false;
   
     document.querySelectorAll(".product-container").forEach(productContainer => {
-      const priceElement = productContainer.querySelector(".name-price p");
-      
-      if (priceElement) {
-        const price = parseFloat(priceElement.innerText);
+        const priceElement = productContainer.querySelector(".name-price p");
   
-        if (price <= maxPrice) {
-          productContainer.classList.add("visible");
-        } else {
-          productContainer.classList.remove("visible");
+        if (priceElement) {
+            const price = parseFloat(priceElement.innerText);
+  
+            if (price <= maxPrice) {
+                productContainer.classList.add("visible");
+                productFound = true;
+            } else {
+                productContainer.classList.remove("visible");
+            }
         }
-      }
     });
-  });
+  
+    let noProductsMessage = document.querySelector("#no-products-message");
+  
+    if (!noProductsMessage) {
+        noProductsMessage = document.createElement("div");
+        noProductsMessage.id = "no-products-message";
+        noProductsMessage.innerText = "¡Ups! Aquí no hay nada :(";
+        document.querySelector(".product-grid").append(noProductsMessage)
+    }
+  
+    if (!productFound) {
+        noProductsMessage.style.display = "block"; 
+    } else {
+        noProductsMessage.style.display = "none";
+    }
+});
 
   const cleanFilters = document.createElement("button");
   cleanFilters.classList.add("clean");
   cleanFilters.innerText = "Limpiar filtros";
 
   cleanFilters.addEventListener("click", () => {
-    window.scrollTo(0, 0);
-    location.reload();
+    // window.scrollTo(0, 0);
+    document.querySelectorAll(".product-container").forEach(product => product.classList.add("visible"));
+    document.querySelectorAll(".filter-btn").forEach(product => product.classList.remove("selected"));
+     
   })
 
   filterContainer.append(priceDiv, cleanFilters);
